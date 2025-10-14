@@ -2,31 +2,45 @@ import { useState } from "react";
 
 import "../styles/style.css";
 
-function PersonalSection() {
-  const [submitted, submitState] = useState(false);
+function FormEntry({ name, label, inputType = "field", halfCol = false }) {
+  const [value, setValue] = useState("");
 
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  let className = "formEntry";
+  if (halfCol) className += " halfCol";
+
+  return (
+    <>
+      <div className={className}>
+        <label for={name}>
+          {label}
+          {!value ? <span style={{ color: "red" }}>*</span> : null}
+        </label>
+        <input
+          type={inputType}
+          name={name}
+          onChange={onChange}
+          required
+        ></input>
+      </div>
+    </>
+  );
+}
+
+function PersonalSection() {
   return (
     <div className="personalSection">
       <form>
         <div className="formEntry">
           <h2>Personal Information</h2>
         </div>
-        <div className="formEntry halfCol">
-          <label for="firstName">First Name</label>
-          <input type="field" name="firstName"></input>
-        </div>
-        <div className="formEntry halfCol">
-          <label for="LastName">Last Name</label>
-          <input type="field" name="LastName"></input>
-        </div>
-        <div className="formEntry">
-          <label for="emailAdd">Email Address</label>
-          <input type="email" name="emailAdd"></input>
-        </div>
-        <div className="formEntry">
-          <label for="phoneNum">Phone Number</label>
-          <input type="tel" name="phoneNum"></input>
-        </div>
+        <FormEntry name="firstName" label="First Name" halfCol={true} />
+        <FormEntry name="lastName" label="Last Name" halfCol={true} />
+        <FormEntry name="emailAdd" label="Email Address" inputType="email" />
+        <FormEntry name="phoneNum" label="Phone Number" inputType="tel" />
       </form>
     </div>
   );
