@@ -2,6 +2,21 @@
     box-sizing: border-box;
 }
 
+*:focus {
+    outline: 0px;
+    background-color: ghostwhite;
+    border: 1px solid steelblue;
+}
+
+*:disabled {
+    opacity: 0.5;
+}
+
+input:hover,
+button:hover {
+    border: 1px solid steelblue;
+}
+
 h2 {
     margin: 0px 0px 0px 0px;
 }
@@ -30,6 +45,19 @@ input {
     font-size: 1.1rem;
 }
 
+input:invalid {
+    border-left: 5px solid red;
+}
+
+button {
+    padding: 4px 32px;
+    border: 1px solid darkgray;
+    border-radius: 8px;
+
+    font-size: 1rem;
+    background-color: whitesmoke;
+}
+
 .formEntry {
     grid-column: span 2;
 
@@ -46,14 +74,6 @@ input {
     gap: 4px;
 
     margin-top: 16px;
-
-    button {
-        padding: 4px 32px;
-        border: 1px solid darkgray;
-        border-radius: 8px;
-
-        font-size: 1rem;
-    }
 }
 
 .halfCol {
