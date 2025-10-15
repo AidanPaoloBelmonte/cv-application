@@ -31,6 +31,8 @@ function FormEntry({ name, label, inputType = "field", halfCol = false }) {
 }
 
 function PersonalSection() {
+  const [submitted, setSubmitStatus] = useState(false);
+
   return (
     <div className="personalSection">
       <form>
@@ -41,6 +43,11 @@ function PersonalSection() {
         <FormEntry name="lastName" label="Last Name" halfCol={true} />
         <FormEntry name="emailAdd" label="Email Address" inputType="email" />
         <FormEntry name="phoneNum" label="Phone Number" inputType="tel" />
+        <div className="formFooter">
+          <button submit="button" onClick={() => setSubmitStatus(true)}>
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );
