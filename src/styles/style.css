@@ -25,9 +25,10 @@
 }
 
 button {
+    min-width: 120px;
     transition:
         box-shadow 100ms ease-in-out,
-        transform 50ms ease-in-out;
+        background-color 100ms ease-in-out;
 }
 
 input:hover,
@@ -44,7 +45,8 @@ button:hover {
 }
 
 button:active {
-    transform: scale(0.95);
+    background-color: steelblue;
+    color: white;
 }
 
 h2 {

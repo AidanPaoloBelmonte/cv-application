@@ -109,7 +109,7 @@ function PersonalSection() {
               onClick={handleSubmitStateChange}
               disabled={(!isDirty || !isValid) && !submitted}
             >
-              Submit
+              {submitted ? "Edit" : "Submit"}
             </button>
           </div>
         </form>
