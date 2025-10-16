@@ -8,6 +8,7 @@ function FormEntry({
   label,
   ref,
   inputType = "field",
+  pattern = null,
   onChange,
   onBlur,
   halfCol = false,
@@ -32,6 +33,7 @@ function FormEntry({
       onBlur={onBlur}
       ref={ref}
       required
+      pattern={pattern}
     ></input>
   ) : (
     <p>{value}</p>
@@ -94,12 +96,12 @@ function PersonalSection() {
         <FormEntry
           {...register("phoneNum", {
             required: true,
-            pattern:
-              /^\(?\+?([0-9]{1,3})?[- (]?\(?([0-9]{3})?[-. )]*?\(?([0-9]{3})[-. )]*?\(?([0-9]{4})\)?\s?$/gm,
+            pattern: /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm,
           })}
           label="Phone Number"
           inputType="tel"
           asPlain={submitted}
+          pattern="^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$"
         />
         <div className="formFooter">
           <button
