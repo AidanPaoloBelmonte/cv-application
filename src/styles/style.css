@@ -24,9 +24,28 @@
     opacity: 0.5;
 }
 
+button {
+    transition:
+        box-shadow 100ms ease-in-out,
+        transform 50ms ease-in-out;
+}
+
 input:hover,
 button:hover {
     border: 1px solid steelblue;
+}
+
+button:focus,
+button:hover {
+    box-shadow: 0px 0px 5px 1px steelblue;
+}
+
+button:focus {
+    outline: 8px steelblue;
+}
+
+button:active {
+    transform: scale(0.95);
 }
 
 h2 {
@@ -71,6 +90,7 @@ button {
 }
 
 label {
+    color: steelblue;
     font-weight: bold;
 }
 
@@ -82,7 +102,10 @@ label {
     gap: 4px;
 
     p {
-        margin: 0px 0px 8px 0px;
+        padding-top: 2px;
+        border-top: 1px solid gainsboro;
+        margin: 0px 0px 5px 0px;
+
         font-size: 1.2rem;
     }
 }
