@@ -61,7 +61,7 @@ function PersonalSection() {
   const [submitted, setSubmitStatus] = useState(false);
 
   const handleSubmitStateChange = (e) => {
-    setSubmitStatus(true);
+    setSubmitStatus(!submitted);
 
     e.preventDefault();
   };
@@ -87,7 +87,6 @@ function PersonalSection() {
         <FormEntry
           {...register("emailAdd", {
             required: true,
-            pattern: /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/gm,
           })}
           label="Email Address"
           inputType="email"
@@ -107,7 +106,7 @@ function PersonalSection() {
           <button
             submit="button"
             onClick={handleSubmitStateChange}
-            disabled={!isDirty || (!isValid && !submitted)}
+            disabled={(!isDirty || !isValid) && !submitted}
           >
             Submit
           </button>
