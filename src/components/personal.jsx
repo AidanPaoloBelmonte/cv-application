@@ -5,6 +5,19 @@ import FormEntry from "./formEntry";
 
 import "../styles/style.css";
 
+const fields = [
+  { name: "firstName", label: "First Name", halfCol: true },
+  { name: "lastName", label: "Last Name", halfCol: true },
+  { name: "emailAdd", label: "Email Address", inputType: "email" },
+  {
+    name: "phoneNum",
+    label: "Phone Number",
+    inputType: "tel",
+    registerPattern: /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm,
+    pattern: "^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$",
+  },
+];
+
 function PersonalSection() {
   const {
     register,
@@ -19,6 +32,17 @@ function PersonalSection() {
     e.preventDefault();
   };
 
+  const formEntries = fields.map((field) => (
+    <FormEntry
+      {...register(field.name, {
+        required: true,
+        pattern: field?.registerPattern,
+      })}
+      {...field}
+      asPlain={submitted}
+    ></FormEntry>
+  ));
+
   return (
     <div className="personalSection">
       <div className="formContainer">
@@ -26,36 +50,7 @@ function PersonalSection() {
           <h2>Personal Information</h2>
         </div>
         <form onSubmit={handleSubmit()}>
-          <FormEntry
-            {...register("firstName", { required: true })}
-            label="First Name"
-            halfCol={true}
-            asPlain={submitted}
-          />
-          <FormEntry
-            {...register("lastName", { required: true })}
-            label="Last Name"
-            halfCol={true}
-            asPlain={submitted}
-          />
-          <FormEntry
-            {...register("emailAdd", {
-              required: true,
-            })}
-            label="Email Address"
-            inputType="email"
-            asPlain={submitted}
-          />
-          <FormEntry
-            {...register("phoneNum", {
-              required: true,
-              pattern: /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm,
-            })}
-            label="Phone Number"
-            inputType="tel"
-            asPlain={submitted}
-            pattern="^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$"
-          />
+          {formEntries}
           <div className="formFooter">
             <button
               submit="button"
