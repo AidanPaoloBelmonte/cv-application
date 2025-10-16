@@ -68,50 +68,52 @@ function PersonalSection() {
 
   return (
     <div className="personalSection">
-      <form onSubmit={handleSubmit()}>
-        <div className="formEntry">
+      <div className="formContainer">
+        <div className="sectionName">
           <h2>Personal Information</h2>
         </div>
-        <FormEntry
-          {...register("firstName", { required: true })}
-          label="First Name"
-          halfCol={true}
-          asPlain={submitted}
-        />
-        <FormEntry
-          {...register("lastName", { required: true })}
-          label="Last Name"
-          halfCol={true}
-          asPlain={submitted}
-        />
-        <FormEntry
-          {...register("emailAdd", {
-            required: true,
-          })}
-          label="Email Address"
-          inputType="email"
-          asPlain={submitted}
-        />
-        <FormEntry
-          {...register("phoneNum", {
-            required: true,
-            pattern: /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm,
-          })}
-          label="Phone Number"
-          inputType="tel"
-          asPlain={submitted}
-          pattern="^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$"
-        />
-        <div className="formFooter">
-          <button
-            submit="button"
-            onClick={handleSubmitStateChange}
-            disabled={(!isDirty || !isValid) && !submitted}
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+        <form onSubmit={handleSubmit()}>
+          <FormEntry
+            {...register("firstName", { required: true })}
+            label="First Name"
+            halfCol={true}
+            asPlain={submitted}
+          />
+          <FormEntry
+            {...register("lastName", { required: true })}
+            label="Last Name"
+            halfCol={true}
+            asPlain={submitted}
+          />
+          <FormEntry
+            {...register("emailAdd", {
+              required: true,
+            })}
+            label="Email Address"
+            inputType="email"
+            asPlain={submitted}
+          />
+          <FormEntry
+            {...register("phoneNum", {
+              required: true,
+              pattern: /^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$/gm,
+            })}
+            label="Phone Number"
+            inputType="tel"
+            asPlain={submitted}
+            pattern="^(1\s?)?(\d{3}|\(\d{3}\))[\s\-]?\d{3}[\s\-]?\d{4}$"
+          />
+          <div className="formFooter">
+            <button
+              submit="button"
+              onClick={handleSubmitStateChange}
+              disabled={(!isDirty || !isValid) && !submitted}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

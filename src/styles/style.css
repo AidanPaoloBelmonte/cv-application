@@ -35,13 +35,12 @@ button:hover {
     border: 1px solid steelblue;
 }
 
-button:focus,
-button:hover {
-    box-shadow: 0px 0px 5px 1px steelblue;
+button:focus {
+    box-shadow: 0px 0px 5px 1px lightsteelblue;
 }
 
-button:focus {
-    outline: 8px steelblue;
+button:hover {
+    box-shadow: 0px 0px 5px 1px steelblue;
 }
 
 button:active {
@@ -60,12 +59,9 @@ form {
     grid-auto-rows: max-content;
     gap: 12px;
 
-    padding: 24px;
-    border: 1px solid gainsboro;
-    border-radius: 16px;
-    margin: 0 auto;
-
     width: 500px;
+
+    margin: 24px;
 }
 
 input {
@@ -108,6 +104,29 @@ label {
 
         font-size: 1.2rem;
     }
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    width: max-content;
+
+    border: 1px solid gainsboro;
+    border-radius: 16px;
+    margin: 0 auto;
+
+    overflow: hidden;
+}
+
+.sectionName {
+    align-self: stretch;
+
+    padding: 12px 24px;
+
+    background-color: whitesmoke;
 }
 
 .formFooter {
