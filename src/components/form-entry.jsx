@@ -3,6 +3,7 @@ import { useState } from "react";
 function FormEntry({
   name,
   label,
+  keycode,
   ref,
   inputType = "field",
   pattern = null,
@@ -24,6 +25,7 @@ function FormEntry({
 
   const entry = !asPlain ? (
     <input
+      id={name}
       type={inputType}
       name={name}
       onChange={onInputChange}
@@ -31,15 +33,16 @@ function FormEntry({
       ref={ref}
       required
       pattern={pattern}
+      key={`input-${keycode}`}
     ></input>
   ) : (
-    <p>{value}</p>
+    <p key={`p-${keycode}`}>{value}</p>
   );
 
   return (
     <>
       <div className={className}>
-        <label for={name}>
+        <label htmlFor={name} key={`label-${keycode}`}>
           {label}
           {!asPlain && !value ? <span style={{ color: "red" }}>*</span> : null}
         </label>

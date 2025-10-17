@@ -9,7 +9,11 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <FormSection
       sectionName="Personal Information"
-      fields={entries["Personal Information"]}
+      {...entries["Personal Information"]}
+    />
+    <FormSection
+      sectionName="Educational Background"
+      {...entries["Educational Background"]}
     />
   </StrictMode>,
 );

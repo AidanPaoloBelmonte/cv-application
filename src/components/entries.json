@@ -1,13 +1,27 @@
 {
-  "Personal Information": [
-    { "name": "firstName", "label": "First Name", "halfCol": true },
-    { "name": "lastName", "label": "Last Name", "halfCol": true },
-    { "name": "emailAdd", "label": "Email Address", "inputType": "email" },
-    {
-      "name": "phoneNum",
-      "label": "Phone Number",
-      "inputType": "tel",
-      "pattern": "^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"
-    }
-  ]
+  "Personal Information": {
+    "className": "personalSection",
+    "code": "ps",
+    "extendable": false,
+    "fields": [
+      { "name": "firstName", "label": "First Name", "halfCol": true },
+      { "name": "lastName", "label": "Last Name", "halfCol": true },
+      { "name": "emailAdd", "label": "Email Address", "inputType": "email" },
+      {
+        "name": "phoneNum",
+        "label": "Phone Number",
+        "inputType": "tel",
+        "pattern": "^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"
+      }
+    ]
+  },
+  "Educational Background": {
+    "className": "educationSection",
+    "code": "ed",
+    "extendable": true,
+    "fields": [
+      { "name": "yearRange", "label": "Year(s)" },
+      { "name": "school", "label": "School" }
+    ]
+  }
 }
