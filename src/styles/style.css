@@ -92,6 +92,10 @@ label {
     font-weight: bold;
 }
 
+.formSection {
+    margin: 24px 0px;
+}
+
 .formEntry {
     grid-column: span 2;
 
@@ -135,7 +139,7 @@ label {
     grid-column: span 2;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-template-rows: 1fr;
     grid-auto-columns: 1fr;
     grid-auto-rows: max-content;
@@ -154,6 +158,6 @@ label {
     margin-top: 16px;
 }
 
-.halfCol {
+.singleCol {
     grid-column: span 1;
 }

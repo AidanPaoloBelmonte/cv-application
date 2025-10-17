@@ -35,33 +35,41 @@ function FormSection({ sectionName, code, className, extendable, fields }) {
     ));
   };
 
-  const formEntries = generateEntries();
+  const generateGroups = () => {
+    const entries = [];
 
-  const expandableEntries = [];
-  if (extendable) {
     for (let l = 0; l < extensions; l++) {
       const key = `${code}${l}`;
-      expandableEntries.push(
+      entries.push(
         <div key={key} className="extendGroup">
           {generateEntries(key)}
         </div>,
       );
     }
-  }
+
+    return entries;
+  };
 
   return (
-    <div className={className}>
+    <div className={`formSection ${className}`}>
       <div className="formContainer">
         <div className="sectionName">
           <h2>{sectionName}</h2>
         </div>
         <form onSubmit={handleSubmit()}>
-          {extendable ? expandableEntries : formEntries}
-          {extendable ? (
-            <div className="extendButton">
-              <button submit="button">Add</button>
-            </div>
-          ) : null}
+          {extendable ? generateGroups() : generateEntries()}
+          {submitted || !extendable ? null : (
+            <>
+              <div className="extendButton" key={`${className}-exBtn`}>
+                <button submit="button">Add</button>
+              </div>
+              {extensions <= 1 ? null : (
+                <div className="extendButton" key={`${className}-rdBtn`}>
+                  <button submit="button">Remove</button>
+                </div>
+              )}
+            </>
+          )}
           <div className="formFooter">
             <button
               submit="button"

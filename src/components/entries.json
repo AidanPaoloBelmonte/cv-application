@@ -4,8 +4,8 @@
     "code": "ps",
     "extendable": false,
     "fields": [
-      { "name": "firstName", "label": "First Name", "halfCol": true },
-      { "name": "lastName", "label": "Last Name", "halfCol": true },
+      { "name": "firstName", "label": "First Name", "classes": "singleCol" },
+      { "name": "lastName", "label": "Last Name", "classes": "singleCol" },
       { "name": "emailAdd", "label": "Email Address", "inputType": "email" },
       {
         "name": "phoneNum",
@@ -20,7 +20,7 @@
     "code": "ed",
     "extendable": true,
     "fields": [
-      { "name": "yearRange", "label": "Year(s)" },
+      { "name": "yearRange", "label": "Year(s)", "classes": "singleCol" },
       { "name": "school", "label": "School" }
     ]
   }

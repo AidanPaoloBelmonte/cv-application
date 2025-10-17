@@ -5,11 +5,11 @@ function FormEntry({
   label,
   keycode,
   ref,
+  classes,
   inputType = "field",
   pattern = null,
   onChange,
   onBlur,
-  halfCol = false,
   asPlain = false,
 }) {
   const [value, setValue] = useState("");
@@ -20,12 +20,12 @@ function FormEntry({
     setValue(e.target.value);
   };
 
-  let className = "formEntry";
-  if (halfCol) className += " halfCol";
+  let className = `formEntry ${classes}`;
 
   const entry = !asPlain ? (
     <input
       id={name}
+      className={classes}
       type={inputType}
       name={name}
       onChange={onInputChange}
