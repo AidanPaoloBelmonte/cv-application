@@ -87,7 +87,8 @@ button {
     background-color: whitesmoke;
 }
 
-label {
+label,
+.labelSub {
     color: steelblue;
     font-weight: bold;
 }

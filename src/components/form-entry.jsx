@@ -3,6 +3,7 @@ import { useState } from "react";
 function FormEntry({
   name,
   label,
+  index,
   keycode,
   ref,
   classes,
@@ -10,6 +11,8 @@ function FormEntry({
   pattern = null,
   onChange,
   onBlur,
+  renderLabel = true,
+  renderLabelCount = false,
   asPlain = false,
 }) {
   const [value, setValue] = useState("");
@@ -39,13 +42,22 @@ function FormEntry({
     <p key={`p-${keycode}`}>{value}</p>
   );
 
+  const entryLabel = asPlain ? (
+    <span className="labelSub" key={`label-${keycode}`}>
+      {renderLabel ? label : null}
+    </span>
+  ) : (
+    <label htmlFor={`${name}-${keycode}`} key={`label-${keycode}`}>
+      {label}
+      {renderLabelCount ? ` ${index}` : null}
+      {!asPlain && !value ? <span style={{ color: "red" }}>*</span> : null}
+    </label>
+  );
+
   return (
     <>
       <div className={className}>
-        <label htmlFor={`${name}-${keycode}`} key={`label-${keycode}`}>
-          {label}
-          {!asPlain && !value ? <span style={{ color: "red" }}>*</span> : null}
-        </label>
+        {entryLabel}
         {entry}
       </div>
     </>

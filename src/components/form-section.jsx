@@ -39,17 +39,22 @@ function FormSection({ sectionName, code, className, extendable, fields }) {
     e.preventDefault();
   };
 
-  const generateEntries = (key = `${code}0`) => {
+  const generateEntries = (index = 0, renderLabelCount = false) => {
+    const keycode = `${code}${index}`;
+
     return fields.map((field) => (
       <FormEntry
-        {...register(`${field.name}-${key}`, {
+        {...register(`${field.name}-${keycode}`, {
           required: true,
           pattern: RegExp(field?.pattern),
         })}
         {...field}
+        index={parseInt(index) + 1}
+        keycode={keycode}
+        key={`${field.name}-${keycode}`}
+        renderLabel={index == 0}
+        renderLabelCount={renderLabelCount}
         asPlain={submitted}
-        keycode={key}
-        key={`${field.name}-${key ? key : ""}`}
       ></FormEntry>
     ));
   };
@@ -58,10 +63,10 @@ function FormSection({ sectionName, code, className, extendable, fields }) {
     const entries = [];
 
     for (let l = 0; l < extensionCount; l++) {
-      const key = `${code}${l}`;
+      const index = `${l}`;
       entries.push(
-        <div key={key} className="extendGroup">
-          {generateEntries(key)}
+        <div key={index} className="extendGroup">
+          {generateEntries(index, true)}
         </div>,
       );
     }
