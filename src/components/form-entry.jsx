@@ -27,7 +27,7 @@ function FormEntry({
       id={`${name}-${keycode}`}
       className={classes}
       type={inputType}
-      name={name}
+      name={`${name}-${keycode}`}
       onChange={onInputChange}
       onBlur={onBlur}
       ref={ref}
