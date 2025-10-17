@@ -83,23 +83,30 @@ function FormSection({ sectionName, code, className, extendable, fields }) {
         <form onSubmit={handleSubmit()}>
           {extendable ? generateGroups() : generateEntries()}
           {submitted || !extendable ? null : (
-            <>
-              <div className="extendButton" key={`${className}-exBtn`}>
-                <button submit="button" onClick={incrementExtensions}>
-                  Add
-                </button>
-              </div>
+            <div className="extendControls">
+              <button
+                className="extendButton extendControl"
+                key={`${className}-exBtn`}
+                submit="button"
+                onClick={incrementExtensions}
+              >
+                Add
+              </button>
               {extensionCount <= 1 ? null : (
-                <div className="extendButton" key={`${className}-rdBtn`}>
-                  <button submit="button" onClick={decrementExtensions}>
-                    Remove
-                  </button>
-                </div>
+                <button
+                  className="reduceButton extendControl"
+                  key={`${className}-rdBtn`}
+                  submit="button"
+                  onClick={decrementExtensions}
+                >
+                  Remove
+                </button>
               )}
-            </>
+            </div>
           )}
           <div className="formFooter">
             <button
+              className="submitButton"
               submit="button"
               onClick={handleSubmitStateChange}
               disabled={(!isDirty || !isValid) && !submitted}
