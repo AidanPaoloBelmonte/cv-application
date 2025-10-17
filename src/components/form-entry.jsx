@@ -24,7 +24,7 @@ function FormEntry({
 
   const entry = !asPlain ? (
     <input
-      id={name}
+      id={`${name}-${keycode}`}
       className={classes}
       type={inputType}
       name={name}
@@ -42,7 +42,7 @@ function FormEntry({
   return (
     <>
       <div className={className}>
-        <label htmlFor={name} key={`label-${keycode}`}>
+        <label htmlFor={`${name}-${keycode}`} key={`label-${keycode}`}>
           {label}
           {!asPlain && !value ? <span style={{ color: "red" }}>*</span> : null}
         </label>

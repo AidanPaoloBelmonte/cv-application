@@ -8,11 +8,12 @@ import "../styles/style.css";
 function FormSection({ sectionName, code, className, extendable, fields }) {
   const {
     register,
+    unregister,
     handleSubmit,
     formState: { isDirty, isValid },
   } = useForm({ mode: "OnChange" });
   const [submitted, setSubmitStatus] = useState(false);
-  const [extensions, changeExtensionCount] = useState(1);
+  const [extensionCount, setExtensionCount] = useState(1);
 
   const handleSubmitStateChange = (e) => {
     setSubmitStatus(!submitted);
@@ -20,10 +21,28 @@ function FormSection({ sectionName, code, className, extendable, fields }) {
     e.preventDefault();
   };
 
+  const incrementExtensions = (e) => {
+    const newAmount = extensionCount + 1;
+    setExtensionCount(newAmount);
+
+    e.preventDefault();
+  };
+
+  const decrementExtensions = (e) => {
+    const newAmount = Math.max(extensionCount - 1, 1);
+    fields.forEach((field) => {
+      unregister(`${field.name}-${code}${newAmount}`);
+    });
+
+    setExtensionCount(newAmount);
+
+    e.preventDefault();
+  };
+
   const generateEntries = (key = `${code}0`) => {
     return fields.map((field) => (
       <FormEntry
-        {...register(field.name, {
+        {...register(`${field.name}-${key}`, {
           required: true,
           pattern: RegExp(field?.pattern),
         })}
@@ -38,7 +57,7 @@ function FormSection({ sectionName, code, className, extendable, fields }) {
   const generateGroups = () => {
     const entries = [];
 
-    for (let l = 0; l < extensions; l++) {
+    for (let l = 0; l < extensionCount; l++) {
       const key = `${code}${l}`;
       entries.push(
         <div key={key} className="extendGroup">
@@ -61,11 +80,15 @@ function FormSection({ sectionName, code, className, extendable, fields }) {
           {submitted || !extendable ? null : (
             <>
               <div className="extendButton" key={`${className}-exBtn`}>
-                <button submit="button">Add</button>
+                <button submit="button" onClick={incrementExtensions}>
+                  Add
+                </button>
               </div>
-              {extensions <= 1 ? null : (
+              {extensionCount <= 1 ? null : (
                 <div className="extendButton" key={`${className}-rdBtn`}>
-                  <button submit="button">Remove</button>
+                  <button submit="button" onClick={decrementExtensions}>
+                    Remove
+                  </button>
                 </div>
               )}
             </>
