@@ -23,7 +23,7 @@ function FormSection({ sectionName, fields }) {
     <FormEntry
       {...register(field.name, {
         required: true,
-        pattern: field?.registerPattern,
+        pattern: RegExp(field?.pattern),
       })}
       {...field}
       asPlain={submitted}
